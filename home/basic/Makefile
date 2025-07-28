@@ -1,5 +1,4 @@
 # Compiler
-CC = /home/heshds/working_dir/cva6-sdk/buildroot/output/host/bin/riscv64-buildroot-linux-gnu-gcc
 CC = /opt/dev/riscv_linux_rv64g_regsw/bin/riscv64-unknown-linux-gnu-gcc
 # Compiler flags
 CFLAGS = --sysroot=/home/heshds/working_dir/cva6-sdk/buildroot/output/host/riscv64-buildroot-linux-gnu/sysroot

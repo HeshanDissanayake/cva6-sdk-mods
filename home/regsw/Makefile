@@ -1,8 +1,10 @@
 # Compiler
-CC = /home/heshds/working_dir/cva6-sdk/buildroot/output/host/bin/riscv64-buildroot-linux-gnu-gcc
-CC = /opt/dev/riscv_linux_rv64g_regsw/bin/riscv64-unknown-linux-gnu-gcc
+export RISCV_CC = /opt/dev/riscv_linux_rv64g_regsw/bin/riscv64-unknown-linux-gnu-gcc
 # Compiler flags
-CFLAGS = --sysroot=/home/heshds/working_dir/cva6-sdk/buildroot/output/host/riscv64-buildroot-linux-gnu/sysroot
+export RISCV_CFLAGS = --sysroot=/home/heshds/working_dir/cva6-sdk/buildroot/output/host/riscv64-buildroot-linux-gnu/sysroot
+
+REGSW_COMPILER = ../../scripts/compile_linux.sh
+
 
 # All .c source files
 SRCS = $(wildcard *.c)
@@ -15,7 +17,7 @@ all: increment $(BINS)
 
 # Rule to build each executable from its .c file
 %: %.c
-	$(CC) $(CFLAGS) -o $@ $<
+	$(REGSW_COMPILER) $< $@ 
 
 # this updates a build counter that we can use to see whether the linux image has the latest changes
 increment:
@@ -28,4 +30,7 @@ increment:
 clean:
 	rm -f $(BINS)
 
+clean-all:
+	rm -r asm asm_injected regsw_obj LLVM
+	rm -f $(BINS)
 
